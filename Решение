@@ -1,0 +1,31 @@
+array = list(map(int, input('Введите любую последовательность чисел через пробел: ').split()))
+luboe_number = int(input("Введите любое число: "))
+
+def buble(array):
+    for i in range(len(array)):
+        for j in range(len(array)-i-1):
+            if array[j] > array[j+1]:
+                array[j], array[j+1] = array[j+1], array[j]
+    return array
+
+array_1 = buble(array)
+
+def binary_search( array_1, luboe_number, left, right):
+    if left > right:
+        return False
+    middle = (right +left) // 2
+    if array_1[middle] < luboe_number and array_1[middle + 1] >= luboe_number:
+        return middle
+    elif luboe_number < array_1[middle]:
+        return binary_search(array_1, luboe_number, left, middle - 1)
+    else:
+        return binary_search(array_1, luboe_number, middle + 1, right)
+
+for i in range(len(array)):
+     for j in range(len(array) - i - 1):
+         if array[j] > array[j + 1]:
+             array[j], array[j + 1] = array[j + 1], array[j]
+
+
+print(binary_search(array_1, luboe_number, 0, len(array_1)-1))
+print(array)
